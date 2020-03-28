@@ -263,7 +263,7 @@ def test_non_linear():
     plot_contour(X_train[y_train == 1], X_train[y_train == -1], svm)
 
 
-def main(test_type, degree=None):
+def main(test_type):
     if test_type == "linear":
         test_linear()
     elif test_type == "non_linear":
@@ -275,9 +275,7 @@ def main(test_type, degree=None):
 
 
 if __name__ == "__main__":
-    # parser = argparse.ArgumentParser(description="SVM")
-    # parser.add_argument("test_type", help="Select test's type from: [linear, non_linear]", default="linear")
-    # args = parser.parse_args()
-    # main(test_type=args.test_type)
-    # main("linear")
-    main("non_linear")
+    parser = argparse.ArgumentParser(description="SVM")
+    parser.add_argument("test_type", help="Select test's type from: [linear, non_linear]", default="linear")
+    args = parser.parse_args()
+    main(test_type=args.test_type)
