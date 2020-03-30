@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 # Only for convenience
 from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_moons, make_circles, load_iris
 
 
 class SVM:
@@ -158,6 +159,34 @@ def gen_non_lin_separable_data():
     return X1, y1, X2, y2
 
 
+def gen_non_lin_separable_data2():
+    np.random.seed(0)
+    X_xor = np.random.randn(200, 2)
+    y_xor = np.logical_xor(X_xor[:, 0] > 0, X_xor[:, 1] > 0)
+    y_xor = np.where(y_xor, 1, -1).astype("float")
+    return X_xor, y_xor
+
+
+def gen_non_lin_separable_data3():
+    X, y = make_moons(n_samples=100, noise=0)
+    y = np.where(y, 1, -1).astype("float")
+    return X, y.astype("float")
+
+
+def gen_non_lin_separable_data4():
+    X, y = make_circles(n_samples=100, noise=0)
+    y = np.where(y, 1, -1).astype("float")
+    return X, y.astype("float")
+
+
+def gen_non_lin_separable_data5():
+    iris = load_iris()
+    X = iris.data[:, :2]
+    y = iris.target
+    y = np.where(y, 1, -1).astype("float")
+    return X, y.astype("float")
+
+
 def gen_lin_separable_overlap_data():
     # generate training data in the 2-d case
     mean1 = np.array([0, 2])
@@ -247,27 +276,47 @@ def test_linear():
     plot_margin(X_train[y_train == 1], X_train[y_train == -1], svm)
 
 
-def test_non_linear():
-    X1, y1, X2, y2 = gen_non_lin_separable_data()
+def test_non_linear(id_test):
+    if id_test == 1:
+        X1, y1, X2, y2 = gen_non_lin_separable_data()
+        X_train, X_test, y_train, y_test = \
+            train_test_split(np.concatenate((X1, X2)), np.concatenate((y1, y2)), train_size=0.6)
+    elif id_test == 2:
+        X, y = gen_non_lin_separable_data2()
+        X_train, X_test, y_train, y_test = \
+            train_test_split(X, y, train_size=0.6)
+    elif id_test == 3:
+        X, y = gen_non_lin_separable_data3()
+        X_train, X_test, y_train, y_test = \
+            train_test_split(X, y, train_size=0.6)
+    elif id_test == 4:
+        X, y = gen_non_lin_separable_data4()
+        X_train, X_test, y_train, y_test = \
+            train_test_split(X, y, train_size=0.6)
+    elif id_test == 5:
+        X, y = gen_non_lin_separable_data5()
+        X_train, X_test, y_train, y_test = \
+            train_test_split(X, y, train_size=0.8)
+    else:
+        print("ID test not valid.")
+        return -2
 
-    X_train, X_test, y_train, y_test = \
-        train_test_split(np.concatenate((X1, X2)), np.concatenate((y1, y2)), train_size=0.6)
-
-    svm = SVM("gaussian")
+    # types: polynomial, gaussian
+    svm = SVM("polynomial")
     svm.fit(X_train, y_train)
 
     y_predict = svm.predict(X_test)
     correct = int(np.sum(y_predict == y_test))
-    print("%d out of %d predictions correct" % (correct, len(y_predict)))
+    print("Correct predictions: %d out of %d" % (correct, len(y_predict)))
 
     plot_contour(X_train[y_train == 1], X_train[y_train == -1], svm)
 
 
-def main(test_type):
+def main(test_type, id_test=None):
     if test_type == "linear":
         test_linear()
     elif test_type == "non_linear":
-        test_non_linear()
+        test_non_linear(int(id_test))
     else:
         print("Invalid test's type.")
         return -1
@@ -276,6 +325,8 @@ def main(test_type):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="SVM")
-    parser.add_argument("test_type", help="Select test's type from: [linear, non_linear]", default="linear")
+    parser.add_argument("--test_type", help="Select test's type from: [linear, non_linear]", default="linear")
+    parser.add_argument("--test_number", help="Insert ID for non linear dataset: [1:RandomNonLinear, 2:XDataset, 3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]",
+                        default=1, required=False)
     args = parser.parse_args()
     main(test_type=args.test_type)
