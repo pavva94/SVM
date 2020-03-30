@@ -13,13 +13,22 @@ sklearn (For convenience)
 
 _Usage:_ 
 
-SVMOptimization.py [-h] test_type
+python3 main.py -h
+usage: main.py [-h] [--test_type TEST_TYPE] [--test_number TEST_NUMBER]
 
-SVM
+Support Vector Machine from Scratch
 
-positional arguments:
-  test_type   Select test's type from: [linear, non_linear]
+optional arguments:
+  -h, --help            show this help message and exit
+  --test_type TEST_TYPE
+                        Select test's type from: [linear, non_linear]
+  --test_number TEST_NUMBER
+                        Insert ID for non linear dataset: [1:RandomNonLinear,
+                        2:XDataset, 3:MoonDataset, 4:CirclesDataset,
+                        6:IrisDataset]
+
 
 _Example:_
 
-python3 SVMOptimization.py linear
+python3 main.py --test_type linear
+python3 main.py --test_type non_linear --test_number 1
