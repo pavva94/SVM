@@ -1,4 +1,4 @@
-**Support Vector Machine**
+_**Support Vector Machine**_
 
 _Simple SVM from scratch using CVXOPT._
 
@@ -11,7 +11,7 @@ matplotlib,
 sklearn (For convenience)
 
 
-_Usage:_ 
+**_Usage:_** 
 
 python3 main.py -h
 usage: main.py [-h] [--test_type TEST_TYPE] [--test_number TEST_NUMBER]
@@ -28,7 +28,7 @@ optional arguments:
                         6:IrisDataset]
 
 
-_Example:_
+**_Example:_**
 
 python3 main.py --test_type linear
 python3 main.py --test_type non_linear --test_number 1
