@@ -15,20 +15,30 @@ sklearn (For convenience)
 
 python3 main.py -h
 usage: main.py [-h] [--test_type TEST_TYPE] [--test_number TEST_NUMBER]
+               [--kernel_type KERNEL_TYPE]
 
 Support Vector Machine from Scratch
 
 optional arguments:
+
   -h, --help            show this help message and exit
+  
   --test_type TEST_TYPE
                         Select test's type from: [linear, non_linear]
+  
   --test_number TEST_NUMBER
-                        Insert ID for LINEAR dataset: [1, 2]. 
-                        Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
+                        Insert ID for LINEAR dataset: [1, 2].
+                        Insert ID for NON
+                        LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
                         3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]
+  
+  --kernel_type KERNEL_TYPE
+                        [ONLY FOR NON LINEAR] Select kernel's type from:
+                        [polynomial, gaussian]
 
 
 **_Example:_**
 
 python3 main.py --test_type linear
-python3 main.py --test_type non_linear --test_number 1
+
+python3 main.py --test_type non_linear --test_number 1  --kernel_type polynomial
