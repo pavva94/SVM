@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split  # Only for convenience
 
 from datasets import gen_lin_separable_data, gen_non_lin_separable_data, gen_non_lin_separable_data2, \
     gen_non_lin_separable_data3, gen_non_lin_separable_data4, gen_non_lin_separable_data5, gen_lin_separable_overlap_data
-from plots import plot_contour, plot_margin
+from plots import plot_decision_regions
 from SVM import SVM
 
 
@@ -27,7 +27,7 @@ def test_linear(id_test):
     correct = int(np.sum(y_predict == y_test))
     print("%d out of %d predictions correct" % (correct, len(y_predict)))
 
-    plot_margin(X_train[y_train == 1], X_train[y_train == -1], svm)
+    plot_decision_regions(X_train, y_train, svm)
 
 
 def test_non_linear(id_test):
@@ -63,7 +63,7 @@ def test_non_linear(id_test):
     correct = int(np.sum(y_predict == y_test))
     print("Correct predictions: %d out of %d" % (correct, len(y_predict)))
 
-    plot_contour(X_train[y_train == 1], X_train[y_train == -1], svm)
+    plot_decision_regions(X_train, y_train, svm)
 
 
 def main(test_type, id_test=None):
