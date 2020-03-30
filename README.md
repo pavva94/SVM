@@ -23,9 +23,9 @@ optional arguments:
   --test_type TEST_TYPE
                         Select test's type from: [linear, non_linear]
   --test_number TEST_NUMBER
-                        Insert ID for non linear dataset: [1:RandomNonLinear,
-                        2:XDataset, 3:MoonDataset, 4:CirclesDataset,
-                        6:IrisDataset]
+                        Insert ID for LINEAR dataset: [1, 2]. 
+                        Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
+                        3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]
 
 
 **_Example:_**
