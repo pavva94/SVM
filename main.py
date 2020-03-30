@@ -27,7 +27,7 @@ def test_linear(id_test):
     correct = int(np.sum(y_predict == y_test))
     print("%d out of %d predictions correct" % (correct, len(y_predict)))
 
-    plot_decision_regions(X_train, y_train, svm)
+    plot_decision_regions(X_train, y_train, svm, "linear")
 
 
 def test_non_linear(id_test, kernel):
@@ -63,7 +63,7 @@ def test_non_linear(id_test, kernel):
     correct = int(np.sum(y_predict == y_test))
     print("Correct predictions: %d out of %d" % (correct, len(y_predict)))
 
-    plot_decision_regions(X_train, y_train, svm)
+    plot_decision_regions(X_train, y_train, svm, "non_linear")
 
 
 def main(test_type, id_test=None, kernel_type=None):
