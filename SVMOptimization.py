@@ -106,7 +106,7 @@ class SVM:
         if self.weight is not None:  # LINEAR pag 51 of slide
             return np.dot(data, self.weight) + self.bias
         else:  # NON LINEAR Paper
-            y_predict = np.zeros(len(data))  # New
+            y_predict = np.zeros(len(data))
 
             # Formula: f(x) = sign(sum(Yi*Ai*K(x,Xi)) + b)
             for i in range(len(data)):
@@ -247,11 +247,17 @@ def plot_contour(X1_train, X2_train, svm):
     plt.title("Non Linear Kernel")
     plt.plot(X1_train[:, 0], X1_train[:, 1], "ro")
     plt.plot(X2_train[:, 0], X2_train[:, 1], "bo")
-    plt.scatter(support_vector[:, 0], support_vector[:, 1], s=100, c="g")
+    plt.scatter(support_vector[:, 0], support_vector[:, 1], cmap=plt.cm.coolwarm, s=20, edgecolors='k')
 
-    X1, X2 = np.meshgrid(np.linspace(-6, 6, 50), np.linspace(-6, 6, 50))
+    min_bound = min(np.min(X1_train), np.min(X2_train)) - 1
+    max_bound = max(np.max(X1_train), np.max(X2_train)) + 1
+
+    X1, X2 = np.meshgrid(np.linspace(min_bound, max_bound, 50), np.linspace(min_bound, max_bound, 50))
     X = np.array([[x1, x2] for x1, x2 in zip(np.ravel(X1), np.ravel(X2))])
     Z = svm.project(X).reshape(X1.shape)
+
+    plt.contourf(X1, X2, Z, cmap=plt.cm.coolwarm, alpha=1)
+
     plt.contour(X1, X2, Z, [0.0], colors='k', linewidths=1, origin='lower')
     plt.contour(X1, X2, Z + 1, [0.0], colors='grey', linewidths=1, origin='lower')
     plt.contour(X1, X2, Z - 1, [0.0], colors='grey', linewidths=1, origin='lower')
