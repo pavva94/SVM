@@ -30,7 +30,7 @@ def test_linear(id_test):
     plot_decision_regions(X_train, y_train, svm)
 
 
-def test_non_linear(id_test):
+def test_non_linear(id_test, kernel):
     if id_test == 1:
         X1, y1, X2, y2 = gen_non_lin_separable_data()
         X_train, X_test, y_train, y_test = \
@@ -56,7 +56,7 @@ def test_non_linear(id_test):
         return -2
 
     # types: polynomial, gaussian
-    svm = SVM("polynomial")
+    svm = SVM(kernel_type=kernel)
     svm.fit(X_train, y_train)
 
     y_predict = svm.predict(X_test)
@@ -66,14 +66,14 @@ def test_non_linear(id_test):
     plot_decision_regions(X_train, y_train, svm)
 
 
-def main(test_type, id_test=None):
-    if id_test is None:
+def main(test_type, id_test=None, kernel_type=None):
+    if test_type is None or id_test is None or kernel_type is None:
         print("Why are you here?")
         return -1
     if test_type == "linear":
         test_linear(int(id_test))
     elif test_type == "non_linear":
-        test_non_linear(int(id_test))
+        test_non_linear(int(id_test), kernel=kernel_type)
     else:
         print("Invalid test's type.")
         return -1
@@ -87,6 +87,8 @@ if __name__ == "__main__":
                                               "Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset, "
                                               "3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]",
                         default=1, required=False)
+    parser.add_argument("--kernel_type", help="[ONLY FOR NON LINEAR] Select kernel's type from: [polynomial, gaussian]",
+                        default="polynomial")
     args = parser.parse_args()
     print(args)
-    main(test_type=args.test_type, id_test=args.test_number)
+    main(test_type=args.test_type, id_test=args.test_number, kernel_type=args.kernel_type)
