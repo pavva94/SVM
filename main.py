@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split  # Only for convenience
 
 from datasets import gen_lin_separable_data, gen_non_lin_separable_data, gen_non_lin_separable_data2, read_dataset, \
     gen_non_lin_separable_data3, gen_non_lin_separable_data4, gen_non_lin_separable_data5, gen_lin_separable_overlap_data
-from plots import plot_decision_regions
+from plots import plot_decision_regions  # OLD, plot_contour, plot_margin
 from SVM import SVM
 
 
