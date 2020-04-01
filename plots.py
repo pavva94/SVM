@@ -64,6 +64,9 @@ def plot_contour(X1_train, X2_train, svm):
     plt.contour(X1, X2, Z + 1, [0.0], colors='grey', linewidths=1, origin='lower')
     plt.contour(X1, X2, Z - 1, [0.0], colors='grey', linewidths=1, origin='lower')
 
+    plt.axis("tight")
+    plt.show()
+
 
 def plot_decision_regions(X, y, classifier, kernel, resolution=0.02):
     # setup marker generator and color map
