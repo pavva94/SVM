@@ -59,7 +59,7 @@ class SVM:
             for j in range(n_samples):
                 K[i, j] = self.kernel(data[i], data[j])
 
-        # Calculate every argument for the quadrati solver of CVXOPT
+        # Calculate every argument for the quadratic solver of CVXOPT
         P = cvxopt.matrix(np.outer(label, label) * K)
         q = cvxopt.matrix(np.ones(n_samples) * -1)
         A = cvxopt.matrix(label, (1, n_samples))
@@ -99,9 +99,9 @@ class SVM:
             self.weight = None
 
     def project(self, data):
-        if self.weight is not None:  # LINEAR pag 51 of slide
+        if self.kernel == linear_kernel:  # LINEAR
             return np.dot(data, self.weight) + self.bias
-        else:  # NON LINEAR Paper
+        else:  # NON LINEAR
             y_predict = np.zeros(len(data))
 
             # Formula: f(x) = sign(sum(Yi*Ai*K(x,Xi)) + b)
