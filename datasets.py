@@ -1,5 +1,16 @@
+import os
 import numpy as np
 from sklearn.datasets import make_moons, make_circles, load_iris
+
+
+def read_dataset(dataset_path, dataset_name):
+    # I don't know how is built your dataset
+    path = os.path.join(dataset_path, dataset_name)
+    with np.load(path) as data:
+        examples = data['x']
+        labels = data['y']
+
+    return examples, labels
 
 
 def gen_lin_separable_data():
