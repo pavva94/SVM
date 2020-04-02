@@ -100,5 +100,5 @@ if __name__ == "__main__":
     parser.add_argument("--dataset_name", help="Insert name of your own dataset", default=None, required=False)
     args = parser.parse_args()
     print(args)
-    main(test_type=args.test_type, id_test=args.test_number, kernel_type=args.kernel_type,
+    main(test_type=args.kernel_group, id_test=args.dataset_number, kernel_type=args.kernel_type,
          dataset_path=args.dataset_path, dataset_name=args.dataset_name)
