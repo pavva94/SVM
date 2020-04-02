@@ -11,30 +11,34 @@ matplotlib,
 sklearn (For convenience)
 
 
-**_Usage:_** 
+**_usage:_**
 
-python3 main.py -h
-usage: main.py [-h] [--test_type TEST_TYPE] [--test_number TEST_NUMBER]
-               [--kernel_type KERNEL_TYPE]
+ main.py [-h] [--test_type TEST_TYPE] [--test_number TEST_NUMBER]
+               [--kernel_type KERNEL_TYPE] [--dataset_path DATASET_PATH]
+               [--dataset_name DATASET_NAME]
 
 Support Vector Machine from Scratch
 
 optional arguments:
-
   -h, --help            show this help message and exit
   
   --test_type TEST_TYPE
                         Select test's type from: [linear, non_linear]
-  
+                        
   --test_number TEST_NUMBER
                         Insert ID for LINEAR dataset: [1, 2].
-                        Insert ID for NON
-                        LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
+                        Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
                         3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]
-  
+                        
   --kernel_type KERNEL_TYPE
                         [ONLY FOR NON LINEAR] Select kernel's type from:
                         [polynomial, gaussian]
+                        
+  --dataset_path DATASET_PATH
+                        Insert path of your own dataset
+                        
+  --dataset_name DATASET_NAME
+                        Insert name of your own dataset
 
 
 **_Example:_**
