@@ -89,10 +89,10 @@ def main(test_type, id_test=None, kernel_type=None, dataset_path=None, dataset_n
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Support Vector Machine from Scratch")
-    parser.add_argument("--test_type", help="Select test's type from: [linear, non_linear]", default="linear")
-    parser.add_argument("--test_number", help="Insert ID for LINEAR dataset: [1, 2]."
-                                              "Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset, "
-                                              "3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]",
+    parser.add_argument("--kernel_group", help="Select kernel's group from: [linear, non_linear]", default="linear")
+    parser.add_argument("--dataset_number", help="Insert ID for LINEAR dataset: [1, 2]."
+                                                    "Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset, "
+                                                    "3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]",
                         default=1, required=False)
     parser.add_argument("--kernel_type", help="[ONLY FOR NON LINEAR] Select kernel's type from: [polynomial, gaussian]",
                         default="polynomial")

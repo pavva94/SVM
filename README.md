@@ -22,10 +22,10 @@ Support Vector Machine from Scratch
 optional arguments:
   -h, --help            show this help message and exit
   
-  --test_type TEST_TYPE
-                        Select test's type from: [linear, non_linear]
+  --kernel_group KERNEL_GROUP
+                        Select kernel's group from: [linear, non_linear]
                         
-  --test_number TEST_NUMBER
+  --dataset_number DATASET_NUMBER
                         Insert ID for LINEAR dataset: [1, 2].
                         Insert ID for NON LINEAR dataset: [1:RandomNonLinear, 2:XDataset,
                         3:MoonDataset, 4:CirclesDataset, 6:IrisDataset]
@@ -43,6 +43,6 @@ optional arguments:
 
 **_Example:_**
 
-python3 main.py --test_type linear
+python3 main.py --kernel_group linear
 
-python3 main.py --test_type non_linear --test_number 1  --kernel_type polynomial
+python3 main.py --kernel_group non_linear --dataset_number 1  --kernel_type polynomial
