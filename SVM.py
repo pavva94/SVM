@@ -91,15 +91,18 @@ class SVM:
         self.bias /= len(self.alpha)  # 1/len(alphas)
 
         # Weight vector
-        if self.kernel == linear_kernel:
-            self.weight = np.zeros(n_features)
-            for n in range(len(self.alpha)):
-                self.weight += self.alpha[n] * self.support_vector_class[n] * self.support_vector[n]
-        else:
-            self.weight = None
+        # if self.kernel == linear_kernel:
+        #     self.weight = np.zeros(n_features)
+        #     for n in range(len(self.alpha)):
+        #         self.weight += self.alpha[n] * self.support_vector_class[n] * self.support_vector[n]
+        # else:
+        #     self.weight = None
 
     def project(self, data):
         if self.kernel == linear_kernel:  # LINEAR
+            self.weight = np.zeros(data.shape[1])
+            for n in range(len(self.alpha)):
+                self.weight += self.alpha[n] * self.support_vector_class[n] * self.support_vector[n]
             return np.dot(data, self.weight) + self.bias
         else:  # NON LINEAR
             y_predict = np.zeros(len(data))
