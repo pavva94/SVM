@@ -28,7 +28,7 @@ def test_linear(id_test, dataset_path=None, dataset_name=None):
     print("%d out of %d predictions correct" % (correct, len(y_predict)))
 
     # plot_margin(X_train[y_train == 1], X_train[y_train == -1], svm)  # OLD with margin and no color
-    plot_decision_regions(X_train, y_train, svm, "linear")
+    plot_decision_regions(X_train, y_train, X_test, y_predict, svm, "linear")
 
 
 def test_non_linear(id_test, kernel, dataset_path=None, dataset_name=None):
@@ -70,7 +70,7 @@ def test_non_linear(id_test, kernel, dataset_path=None, dataset_name=None):
     print("Correct predictions: %d out of %d" % (correct, len(y_predict)))
 
     # plot_contour(X_train[y_train == 1], X_train[y_train == -1], svm)  # OLD with margin and no color
-    plot_decision_regions(X_train, y_train, svm, "non_linear")
+    plot_decision_regions(X_train, y_train, X_test, y_predict, svm, "non_linear")
 
 
 def main(test_type, id_test=None, kernel_type=None, dataset_path=None, dataset_name=None):

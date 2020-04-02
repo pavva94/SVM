@@ -68,15 +68,22 @@ def plot_contour(X1_train, X2_train, svm):
     plt.show()
 
 
-def plot_decision_regions(X, y, classifier, kernel, resolution=0.02):
+def plot_decision_regions(X, y, Xtest, Ytest, classifier, kernel, resolution=0.02):
     # setup marker generator and color map
     markers = ('s', 'x', 'o', '^', 'v')
     colors = ('red', 'blue', 'lightgreen', 'gray', 'cyan')
     cmap = ListedColormap(colors[:len(np.unique(y))])
 
     # plot the decision surface
-    x1_min, x1_max = X[:, 0].min() - 1, X[:, 0].max() + 1
-    x2_min, x2_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    x1_train_min, x1_train_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+    x2_train_min, x2_train_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+    x1_test_min, x1_test_max = Xtest[:, 0].min() - 1, Xtest[:, 0].max() + 1
+    x2_test_min, x2_test_max = Xtest[:, 1].min() - 1, Xtest[:, 1].max() + 1
+
+    x1_min = min(x1_train_min, x1_test_min)
+    x1_max = max(x1_train_max, x1_test_max)
+    x2_min = min(x2_train_min, x2_test_min)
+    x2_max = max(x2_train_max, x2_test_max)
     xx1, xx2 = np.meshgrid(np.arange(x1_min, x1_max, resolution), np.arange(x2_min, x2_max, resolution))
     Z = classifier.predict(np.array([xx1.ravel(), xx2.ravel()]).T)
     Z = Z.reshape(xx1.shape)
@@ -87,6 +94,8 @@ def plot_decision_regions(X, y, classifier, kernel, resolution=0.02):
     for idx, cl in enumerate(np.unique(y)):
         plt.scatter(x=X[y == cl, 0], y=X[y == cl, 1], alpha=0.8, c=cmap(idx),
                     marker=markers[idx], label=cl)
+        plt.scatter(x=Xtest[Ytest == cl, 0], y=Xtest[Ytest == cl, 1], alpha=0.8, c=cmap(idx),
+                    marker=markers[3], label=cl)
 
     plt.axis("tight")
     if kernel == "linear":
