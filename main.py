@@ -26,7 +26,7 @@ def test_linear(id_test, dataset_path=None, dataset_name=None):
         X_train, X_test, y_train, y_test = \
             train_test_split(X, y, train_size=0.8)
 
-    svm = SVM("linear")
+    svm = SVM(kernel_type="linear")
     svm.fit(X_train, y_train)
 
     y_predict = svm.predict(X_test)
