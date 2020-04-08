@@ -9,16 +9,22 @@ from SVM import SVM
 
 
 def test_linear(id_test, dataset_path=None, dataset_name=None):
-    if id_test == 1:
-        X1, y1, X2, y2 = gen_lin_separable_data()
-    elif id_test == 2:
-        X1, y1, X2, y2 = gen_lin_separable_overlap_data()
+    if dataset_path is None and dataset_name is None:
+        if id_test == 1:
+            X1, y1, X2, y2 = gen_lin_separable_data()
+            X_train, X_test, y_train, y_test = \
+                train_test_split(np.concatenate((X1, X2)), np.concatenate((y1, y2)), train_size=0.6)
+        elif id_test == 2:
+            X1, y1, X2, y2 = gen_lin_separable_overlap_data()
+            X_train, X_test, y_train, y_test = \
+                train_test_split(np.concatenate((X1, X2)), np.concatenate((y1, y2)), train_size=0.6)
+        else:
+            print("ID test not valid.")
+            return -2
     else:
-        print("ID test not valid.")
-        return -2
-
-    X_train, X_test, y_train, y_test = \
-        train_test_split(np.concatenate((X1, X2)), np.concatenate((y1, y2)), train_size=0.6)
+        X, y = read_dataset(dataset_path, dataset_name)
+        X_train, X_test, y_train, y_test = \
+            train_test_split(X, y, train_size=0.8)
 
     svm = SVM("linear")
     svm.fit(X_train, y_train)
